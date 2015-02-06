@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <title>Untitled Document</title>
+            <link type="text/css" rel="stylesheet" href="css/styles.css"/>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+            <script type="text/javascript" src="js/script.js"></script>
+    </head>
+
+    <body>
+        <h1>Lets Paint</h1>
+        <div id='pictures'>
+            <style>
+            #holder { border: 10px dashed #ccc; width: 300px; min-height: 300px; margin: 20px auto;}
+            #holder.hover { border: 10px dashed #0c0; }
+            #holder img { display: block; margin: 10px auto; }
+            #holder p { margin: 10px; font-size: 14px; }
+            .fail { background: #c00; padding: 2px; color: #fff; }
+            .hidden { display: none !important;}
+            </style>
+
+            <header>
+                    <h3 id="header_3">Drag and drop a picture here, and click evolve -></h3>
+            </header>
+            <article>
+                <div id="holder">
+                </div> 
+                <p id="upload" class="hidden"><label>Drag &amp; drop not supported, but you can still upload via this input field:<br><input type="file"></label></p>
+                <p id="filereader">File API &amp; FileReader API not supported</p>
+                <p id="formdata">XHR2's FormData is not supported</p>
+                <p id="progress">XHR2's upload progress isn't supported</p>
+
+            </article>
+
+            <canvas style="display:none;" id="output"></canvas>
+            <canvas style="display:none;" id="hidden_img"></canvas>
+            <canvas style="display:none;" id="test"></canvas>
+            <br/>
+        </div >
+        <script src="js/drag_and_drop.js"></script>
+        
+        
+        <div id='choices'>
+
+            <div id='choices1'>
+                # vertices <input type="text" size=4 id="polypoints" value="3"/><br/>
+                Draw x polys at once: <input type="text" size=4 id="draw_genes_iter" value="1"/><br/>
+                Stop drawing lines if same fit x gen: <input type="text" size=4 id="up_to" value="15"/><br/>
+            </div>
+            <div id='choices2'>
+                Population size: <input type="text" size=4 id="popsize" value="10"/><br/>
+                Difference squared?: <input type="checkbox" id="difsquared" checked /><br/>
+                Gen Pt Mutation Chance: <input type="text" size=4 id="mutatechance" value="0.1"/><br/>
+                Mix Evo<input type="text" size=4 id="mixEvo" value="0"/><br/>
+                Successful parents cutoff: <input type="text" size=4 id="parentcutoff" value="0.2"/><br/>
+                Kill parents: <input type="checkbox" id="killparents" unchecked /><br/>
+                
+                <input type="button" value="Evolve" onclick="start();" id="startbutton"/>
+                <input type="button" value="Stop" onclick="stop();"/>
+                <input type="button" value="Export SVG" onclick="trueExport();"/><br/>
+            </div>
+        </div>
+  
+            Output:<br/>
+            <textarea id="log"></textarea><br/>
+        <div id='out'>
+            Svg Clipboard:<br/>
+            <textarea onclick="select_all('clipboard');" id="clipboard" name="clipboard"></textarea><br/>
+            Genome Clipboard:<br/>
+            <textarea onclick="select_all('genome_clip');" id="genome_clip" name="genome_clip"></textarea><br/>
+        </div>
+    </body>
+</html>
